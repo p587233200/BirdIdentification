@@ -12,6 +12,8 @@
 
 <script setup>
 import { onMounted } from "vue";
+
+const GoogleMAP_API = import.meta.env.VITE_APP_GOOGLE_API_KEY;
 let map;
 
 async function initMap() {
@@ -44,7 +46,7 @@ async function initMap() {
 async function loadGoogleMapsScript() {
   return new Promise((resolve, reject) => {
     const script = document.createElement("script");
-    script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyCuJPb3zW3oYlV4ZJqrVF2UzC4ahUSf0DA&libraries=places`;
+    script.src = `https://maps.googleapis.com/maps/api/js?key=${GoogleMAP_API}&libraries=places`;
     script.async = true;
     script.defer = true;
     script.onload = () => {
