@@ -10,11 +10,29 @@
     </v-card-item>
 
     <v-card-text>
+      <div>
+    <p>{{ message }}</p>
+  </div>
     
       蘑菇蘑菇
     </v-card-text>
   </v-card>
 </template>
 
-<script setup></script>
+<script setup>
+import axios from 'axios';
+import { ref, onMounted } from 'vue';
+
+const message = ref('');
+
+onMounted(() => {
+  axios.get('http://127.0.0.1:5000/api/data')
+    .then(response => {
+      message.value = response.data.message;
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
+});
+</script>
 <style></style>
