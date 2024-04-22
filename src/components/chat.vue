@@ -6,7 +6,7 @@
   >
     <v-card-item>
       <v-card-title> GPT </v-card-title>
-      <v-card-subtitle> 蘑菇蘑菇090 </v-card-subtitle>
+      <v-card-subtitle> 蘑菇蘑菇 </v-card-subtitle>
     </v-card-item>
 
     <v-card-text>
