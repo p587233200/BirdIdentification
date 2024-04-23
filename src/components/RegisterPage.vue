@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <v-container fluid class="background-image">
     <v-alert v-if="alertStore.show" :type="alertStore.type">{{ alertStore.text }}</v-alert>
     <v-alert
       v-if="passwordsMismatch"
@@ -114,7 +114,19 @@ async function login(event) {
   }
 }
 </script>
-<style>
+<style scoped>
+/* 背景圖片設定在整個容器背景上 */
+.background-image {
+    /* 背景圖片填滿整個容器 */
+    background-image: url(@/assets/wallpaper.jpeg);
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .error-message {
   color: red;
 }

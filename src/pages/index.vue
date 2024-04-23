@@ -1,9 +1,10 @@
 <template >
   <topBar />
-  <div class="content"style="background-color: 	#DCDCDC;">
+  <v-container  fluid class="background-image">
     <uploadPage />
     <chat />
-  </div>
+  </v-container >
+  <AppFooter/>
 </template>
 
 <script setup>
@@ -15,4 +16,15 @@
   display: flex;
   justify-content: space-between;
 }
+.background-image {
+  /* 背景圖片填滿整個容器 */
+  background-image: url(@/assets/moon.jpg);
+  background-size: cover;
+  background-position: center;
+  width: 100%;
+  /* height: 100vh; */
+  display: flex;
+  justify-content: center;
+  align-items: ce 100vh;
+  }
 </style>
