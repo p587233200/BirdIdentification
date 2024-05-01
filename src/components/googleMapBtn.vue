@@ -37,6 +37,11 @@ async function initMap() {
   markers.forEach(markerInfo => {
     new Marker({
       position: markerInfo.position,
+      icon: {
+        url: './src/assets/bird.png',
+        scaledSize: new google.maps.Size(40, 40) // 設定圖片大小
+      },
+      animation: google.maps.Animation.DROP,
       map: map,
       title: markerInfo.title,
     });
