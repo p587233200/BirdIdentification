@@ -1,42 +1,26 @@
 import { defineStore } from 'pinia';
-import { useAlertStore } from '@/store/Alert.js';
-// import { VITE_APP_API_URL } from '@/config.js';
+// import { useAlertStore } from '@/services/Alert.js';
 
-async function login_fetch() {}
+const LOGIN_API = import.meta.env.VITE_APP_LOGIN_API_KEY;
+const REGISTER_API = import.meta.env.VITE_APP_REGISTER_API_KEY;
+// const alertStore = useAlertStore();
 
+async function login_fetch() { }
 export const useAuthStore = defineStore({
     id: 'auth',
     persist: {
         key: 'auth',
     },
     state: () => ({
-        token: null,
-        department: null,
-        admin: false,
-        exp: 0,
+        login_status: false,
+        username:''
     }),
     actions: {
-        verify() {
-            const alertStore = useAlertStore();
+        async login(loginData) {
             try {
-                const nowTime = Date.now() / 1000;
-                if (nowTime >= this.exp) {
-                    this.removeAuth();
-                    return true;
-                }
-                return false;
-            } catch (error) {
-                alertStore.callAlert(error.message, 'error');
-                this.removeAuth();
-                return false;
-            }
-        },
-        async login(data) {
-            const alertStore = useAlertStore();
-            try {
-                return await fetch('http://auth.course-forum.ian-shen.live/login', {
+                return await fetch(LOGIN_API, {
                     method: 'POST',
-                    body: JSON.stringify(data),
+                    body: loginData,
                     headers: {
                         'content-Type': 'application/json',
                     },
@@ -46,9 +30,10 @@ export const useAuthStore = defineStore({
                         return response.json();
                     })
                     .then((data) => {
-                        this.setAuth(data.token, data.department, data.identify, data.exp);
-                        alertStore.callAlert('登入成功');
-                        return { status: true, statusCode: 200};
+                        // console.log(loginData.json().username);
+                        console.log(data.message);
+                        this.setAuth(data.username);
+                        return { status: true, statusCode: 200 };
                     })
                     .catch((error) => {
                         return { status: false, statusCode: error };
@@ -57,21 +42,36 @@ export const useAuthStore = defineStore({
                 console.log(error);
             }
         },
-        setAuth(token, department, identify, exp) {
-            this.department = department;
-            this.token = token;
-            if (identify === 'admin') {
-                this.admin = true;
-            } else {
-                this.admin = false;
+        async register(data) {
+            try {
+                return await fetch(REGISTER_API, {
+                    method: 'POST',
+                    body: data,
+                    headers: {
+                        'content-Type': 'application/json',
+                    },
+                })
+                    .then((response) => {
+                        if (!response.ok || response.status != 201) throw new Error(response.status);
+                        return response.json();
+                    })
+                    .then((data) => {
+                        return { status: true, statusCode: 200 };
+                    })
+                    .catch((error) => {
+                        return { status: false, statusCode: error };
+                    });
+            } catch (error) {
+                console.log(error);
             }
-            this.exp = exp;
+        },
+        setAuth(username) {
+            this.login_status = true;
+            this.username=username;
         },
         removeAuth() {
-            this.department = null;
-            this.token = null;
-            this.admin = false;
-            this.exp = 0;
+            this.login_status = false;
+            this.username='';
         },
     },
 });

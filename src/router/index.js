@@ -7,7 +7,6 @@
 // Composables
 import { createRouter, createWebHistory } from 'vue-router/auto'
 import { setupLayouts } from 'virtual:generated-layouts'
-import AuthService from '@/services/AuthService'
 
 
 const router = createRouter({
@@ -16,6 +15,6 @@ const router = createRouter({
 })
 router.addRoute('LoginPage', { path: '/login', component: ()=>import("@/components/LoginPage.vue") })
 router.addRoute('RegisterPage', { path: '/register', component: ()=>import("@/components/RegisterPage.vue") })
-// router.addRoute('LoginPage', { path: '/login', component: LoginPage })
+router.addRoute('Homepage', { path: '/', component:()=>import("@/pages/index.vue") })
 
 export default router
