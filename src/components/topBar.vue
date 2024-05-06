@@ -1,5 +1,5 @@
 <template>
-    <v-alert v-if="alertStore.show" :type="alertStore.type" title="成功～">{{ alertStore.text }}</v-alert>
+    <v-alert v-if="alertStore.show" :type="alertStore.type" :title="alertStore.title" :text="alertStore.text"></v-alert>
     <v-app-bar color="blue-lighten-4">
         <v-toolbar-title>
             <v-avatar size="80">
@@ -10,21 +10,21 @@
             <v-col class="d-flex justify-end" cols="12">
                 <v-row v-if="authStore.login_status" class="d-flex justify-end mr-3">
                     <a class="mr-5 d-flex align-center"></a>
-                    <v-btn color="rgba(70, 105,147, 1)" prepend-icon="mdi-account-circle" @click="admin" class="mr-2" style="font-size:18px;">
+                    <v-btn color="rgba(70, 105,147, 1)" prepend-icon="mdi-account-circle" @click="admin" class="mr-2"
+                        style="font-size:18px;">
                         <template v-slot:prepend>
                             <v-icon color="success"></v-icon>
                         </template>
-                        會員帳號：{{authStore.username }}
+                        會員帳號：{{ authStore.username }}
                     </v-btn>
-                    <v-btn variant="outlined" color="rgba(70, 105,147, 1)" prepend-icon="mdi-logout"
-                        @click="logout" class="mr-2" style="font-size:18px;">
+                    <v-btn variant="outlined" color="rgba(70, 105,147, 1)" prepend-icon="mdi-logout" @click="logout"
+                        class="mr-2" style="font-size:18px;">
                         登出
                         <template v-slot:prepend>
                             <v-icon color="warning"></v-icon>
                         </template>
                     </v-btn>
                 </v-row>
-
                 <v-row v-else='authStore.login_status' class="d-flex justify-end mr-3">
                     <v-btn variant="outlined" color="rgba(70, 105,147, 1)" prepend-icon="mdi-account-circle"
                         class="mr-2" style="font-size:18px;" @click="sendLogin">
@@ -49,13 +49,11 @@
 <script setup>
 import topBar_bird from '@/assets/topBar_bird.png';
 import { useRouter } from 'vue-router';
-// import { computed, onBeforeMount } from 'vue';
 import { useAuthStore } from '@/services/Auth.js';
 import { useAlertStore } from '@/services/Alert.js';
 const authStore = useAuthStore();
 const alertStore = useAlertStore();
 const router = useRouter();
-// const loginButton = computed(() => route.name === 'login');
 
 function sendLogin() {
     router.push('/login');
@@ -64,10 +62,6 @@ function sendLogin() {
 function sendRegister() {
     router.push('/register');
 }
-
-// function admin() {
-//     router.push('/admin/posts');
-// }
 
 function logout() {
     backMain();
@@ -78,17 +72,10 @@ function logout() {
 function backMain() {
     router.push('/');
 }
-// onBeforeMount(() => {
-//     if (authStore.token != null) {
-//         authStore.verify();
-//     }
-// });
 </script>
 <style>
 .logo {
     width: 80px;
-    /* 調整圖片的寬度 */
     height: auto;
-    /* 讓高度按比例自動調整 */
 }
 </style>

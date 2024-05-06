@@ -89,29 +89,37 @@ const rules = [
 function goLoginPage() {
   router.push('/login');
 }
+// function checkAllUsername(){
+
+// }
 async function login(event) {
   if (checkPasswords()) {
     alertStore.callAlert('密碼不一致', '出包拉', 'error');
-  } else {
-    const result = await event;
-    console.log(result)
-    if (result.valid) {
-      waitting.value = true;
-      disabled.value = true;
-      const fetchResult = await authStore.register(createJson());
-      console.log(fetchResult.statusCode);
-      if (fetchResult.status) {
-        setTimeout(() => {
-          router.push('/login');
-          alertStore.callAlert(' 註冊成功 ! ! 現在可以使用您的帳號密碼登入摟！！');
-          waitting.value = false;
-          disabled.value = false;
-        }, 2000);
-      } else {
-        alertStore.callAlert("帳號密碼錯誤", "出包拉", "error");
+    return;
+  }
+  const samename = await authStore.checkUsername(username.value);
+  if (samename.status) {
+    alertStore.callAlert('此帳號已有註冊過了', '出包拉', 'error');
+    return;
+  }
+  console.log(await event);
+  const result = await event;
+  if (result.valid) {
+    waitting.value = true;
+    disabled.value = true;
+    const fetchResult = await authStore.register(createJson());
+    console.log(fetchResult.statusCode);
+    if (fetchResult.status) {
+      setTimeout(() => {
+        router.push('/login');
+        alertStore.callAlert(' 註冊成功 ! ! 現在可以使用您的帳號密碼登入摟！！');
         waitting.value = false;
         disabled.value = false;
-      }
+      }, 2000);
+    } else {
+      alertStore.callAlert("帳號密碼錯誤", "出包拉", "error");
+      waitting.value = false;
+      disabled.value = false;
     }
   }
 }

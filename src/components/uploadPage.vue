@@ -1,5 +1,5 @@
 <template>
-  <v-card class="my-8 ml-5" elevation="16" style="height: 800px; width: 750px">
+  <v-card class="my-2 ml-2" elevation="16" style="height: 700px; width: 750px">
     <div class="d-flex justify-center">
       <v-btn-toggle v-model="toggle_one" mandatory shaped >
         <v-btn
