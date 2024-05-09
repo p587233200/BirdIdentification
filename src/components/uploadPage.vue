@@ -23,7 +23,7 @@
           <template v-slot:prepend>
             <v-icon color="warning"></v-icon>
           </template>
-          Google Map
+          BirdMap 鳥鳥地圖
         </v-btn>
       </v-btn-toggle>
     </div>

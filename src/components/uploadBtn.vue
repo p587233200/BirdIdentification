@@ -26,8 +26,8 @@
     <v-row v-if="nobird" class="ml-15">
       <h2>圖片上辨識不到鳥類</h2>
     </v-row>
-    <v-carousel show-arrows="hover" height="450">
-  <v-carousel-item v-for="(imageUrl, index) in img" :key="index" :src="imageUrl"  @input="refresh.value= $event">
+    <v-carousel show-arrows="hover" height="450" hide-delimiters>
+  <v-carousel-item v-for="(imageUrl, index) in img" :key="index" :src="imageUrl"  @input="refresh.value= $event" >
     <div class="overlay">
       <h2 class="text">辨識結果：{{ identifyStore.bird_names[index] }}</h2>
     </div>
@@ -37,7 +37,7 @@
 </template>
 
 <script setup>
-import init_bird2 from '@/assets/bird2.jpg';
+import init_bird3 from '@/assets/bird3.png';
 import { useIdentifyStore } from '@/services/Identify.js';
 import { useAuthStore } from '@/services/Auth.js';
 import { useAlertStore } from '@/services/Alert.js';
@@ -48,7 +48,7 @@ const identifyStore = useIdentifyStore();
 const authStore = useAuthStore();
 const alertStore = useAlertStore();
 
-const img = ref([init_bird2]);
+const img = ref([init_bird3]);
 const refresh = ref(0);
 const file = ref(null); // 存储选择的文件
 const nobird = ref(false);

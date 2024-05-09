@@ -79,7 +79,7 @@ async function initMap() {
         content: ` <h6 style="color: black;">辨識鳥類名稱：${data.birdNames}</h6>
         <h6 style="color: black;">圖片拍攝時間：${data.observationDate}</h6>
         <h6 style="color: black;">經度：${data.longitude}</h6>
-        <h6 style="color: black;">緯度:${data.latitude}</h6>`
+        <h6 style="color: black;">緯度：${data.latitude}</h6>`
         ,
       });
       marker.addListener('click', e => {
