@@ -1,4 +1,4 @@
-name: CI
+name: CI/CD
 
 on:
   push:
@@ -29,3 +29,9 @@ jobs:
 
     - name: Build project
       run: npm run build
+
+    - name: Deploy to GitHub Pages
+      if: github.ref == 'refs/heads/dev'
+      run: npm run deploy
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
