@@ -13,6 +13,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Install Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: 'lts/*'  # 使用最新的 LTS 版本
 
     - name: Install dependencies
       run: npm install
@@ -23,8 +30,8 @@ jobs:
     - name: Build project
       run: npm run build
 
-    - name: Deploy to GitHub Pages
-      if: github.ref == 'refs/heads/dev'
-      run: npm run deploy
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    # - name: Deploy to GitHub Pages
+    #   if: github.ref == 'refs/heads/dev'
+    #   run: npm run deploy
+    #   env:
+    #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
