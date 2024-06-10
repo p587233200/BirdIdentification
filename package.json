@@ -6,7 +6,8 @@
     "build": "vite build",
     "preview": "vite preview",
     "lint": "eslint . --fix --ignore-path .gitignore",
-    "deploy": "npm run build && gh-pages -d dist"
+    "deploy": "npm run build && gh-pages -d dist",
+    "test": "jest"
   },
   "dependencies": {
     "@mdi/font": "7.0.96",
@@ -19,7 +20,12 @@
     "vuetify": "^3.5.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.24.6",
+    "@babel/preset-env": "^7.24.6",
+    "@babel/preset-typescript": "^7.24.6",
     "@vitejs/plugin-vue": "^5.0.4",
+    "@vue/test-utils": "^2.4.6",
+    "babel-jest": "^29.7.0",
     "eslint": "^8.57.0",
     "eslint-config-standard": "^17.1.0",
     "eslint-plugin-import": "^2.29.1",
@@ -27,6 +33,7 @@
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^6.1.1",
     "eslint-plugin-vue": "^9.22.0",
+    "jest": "^29.7.0",
     "pinia": "^2.1.7",
     "sass": "^1.71.1",
     "unplugin-auto-import": "^0.17.5",
@@ -37,5 +44,16 @@
     "vite-plugin-vue-layouts": "^0.11.0",
     "vite-plugin-vuetify": "^2.0.3",
     "vue-router": "^4.3.0"
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.jsx?$": "babel-jest",
+      "^.+\\.vue$": "vue-jest"
+    },
+    "moduleFileExtensions": ["js", "jsx", "json", "vue"],
+    "transformIgnorePatterns": ["/node_modules/"],
+    "moduleNameMapper": {
+      "^@/(.*)$": "<rootDir>/src/$1"
+    }
   }
 }

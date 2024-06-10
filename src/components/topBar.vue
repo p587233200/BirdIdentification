@@ -27,14 +27,14 @@
                 </v-row>
                 <v-row v-else='authStore.login_status' class="d-flex justify-end mr-3">
                     <v-btn variant="outlined" color="rgba(70, 105,147, 1)" prepend-icon="mdi-account-circle"
-                        class="mr-2" style="font-size:18px;" @click="sendLogin">
+                        class="mr-2" style="font-size:18px;" @click="sendLogin" data-testid="login-button">
                         <template v-slot:prepend>
                             <v-icon color="success"></v-icon>
                         </template>
                         登入
                     </v-btn>
                     <v-btn variant="outlined" color="rgba(70, 105,147, 1)" prepend-icon="mdi-account-plus-outline"
-                        class="mr-2" style="font-size:18px;" @click="sendRegister">
+                        class="mr-2" style="font-size:18px;" @click="sendRegister" data-testid="register-button">
                         <template v-slot:prepend>
                             <v-icon color="warning"></v-icon>
                         </template>
