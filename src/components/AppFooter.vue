@@ -20,8 +20,6 @@
       style="position: absolute; right: 16px;"
     >
       &copy; 2024-{{ (new Date()).getFullYear() }} <span class="d-none d-sm-inline-block">class project by 許哲晟</span>
-      
-      
     </div>
   </v-footer>
 </template>
