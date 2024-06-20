@@ -1,0 +1,5 @@
+.dockerignore
+node_modules
+.example.env
+Dockerfile
+README.md
